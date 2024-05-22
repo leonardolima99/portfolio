@@ -1,16 +1,21 @@
 <script setup lang="ts">
-  const { locale, setLocale } = useI18n();
+  import type { Hero } from "~/types";
+  defineProps({
+    data: Object as PropType<Hero>,
+  });
 </script>
 <template>
-  <div class="max-w-7xl mx-auto p-4">
-    <h1>Hero</h1>
-    {{ $t("welcome") }}
-    <div class="flex gap-2">
-      <button type="button" @click="setLocale('en')">English</button>
-      <button type="button" @click="setLocale('fr')">Français</button>
-      <button type="button" @click="setLocale('pt-br')">
-        Portugês brasileiro
-      </button>
+  <div
+    class="h-[calc(100vh-124px)] pb-[124px] flex gap-2 justify-between items-center flex-wrap"
+  >
+    <h1
+      class="text-6xl font-bold font-poppins text-solid-heading leading-tight"
+      v-html="data?.headline.html"
+    ></h1>
+    <div
+      class="p-2 w-96 aspect-square bg-gradient-to-t from-emerald-500 to-violet-500 rounded-full"
+    >
+      <NuxtImg :src="data?.photo.url" class="w-96 max-w-full rounded-full" />
     </div>
   </div>
 </template>

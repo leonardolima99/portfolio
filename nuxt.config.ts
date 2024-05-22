@@ -1,8 +1,60 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   devtools: { enabled: true },
-  modules: ["@pinia/nuxt", "@nuxtjs/tailwindcss", "@nuxtjs/i18n", "nuxt-icon"],
+  modules: [
+    "@pinia/nuxt",
+    "@nuxtjs/tailwindcss",
+    "@nuxtjs/i18n",
+    "nuxt-icon",
+    "@nuxt/image",
+    "@nuxtjs/apollo",
+  ],
+  app: {
+    head: {
+      link: [
+        { rel: "preconnect", href: "https://fonts.googleapis.com" },
+        {
+          rel: "preconnect",
+          href: "https://fonts.gstatic.com",
+          crossorigin: "anonymous",
+        },
+        {
+          rel: "stylesheet",
+          href: "https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap",
+        },
+      ],
+    },
+  },
   i18n: {
-    vueI18n: "./i18n.config.ts",
+    defaultLocale: "en",
+    langDir: "./lang",
+    lazy: true,
+    locales: [
+      { code: "en", name: "English", file: "en.json" },
+      { code: "pt", name: "Português Brasileiro", file: "pt.json" },
+    ],
+    strategy: "prefix_except_default",
+    customRoutes: "config",
+    pages: {
+      index: {
+        en: "/",
+        pt: "/",
+      },
+    },
+  },
+  image: {
+    dir: process.dev ? "assets/img" : "public",
+  },
+  apollo: {
+    clients: {
+      default: {
+        httpEndpoint: process.env.HYGRAPH_CONTENT_API || "",
+      },
+    },
+  },
+  routeRules: {
+    "/**": {
+      isr: true,
+    },
   },
 });

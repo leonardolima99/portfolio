@@ -1,47 +1,57 @@
 <script setup lang="ts">
-  const navItems = [
-    {
-      name: "Início",
-      path: "/",
-    },
-    {
-      name: "Sobre Mim",
-      path: "#sobre-mim",
-    },
-    {
-      name: "Habilidades",
-      path: "#habilidades",
-    },
-    {
-      name: "Experiências",
-      path: "#experiencias",
-    },
-    {
-      name: "Projetos",
-      path: "#projetos",
-    },
-    {
-      name: "Contato",
-      path: "#contato",
-    },
-  ];
+  const { t } = useI18n();
+  const navItems = computed(() => {
+    return [
+      {
+        name: "Início",
+        path: "/",
+      },
+      {
+        name: t("about-me"),
+        path: "About",
+      },
+      {
+        name: "Habilidades",
+        path: "#habilidades",
+      },
+      {
+        name: "Experiências",
+        path: "#experiencias",
+      },
+      {
+        name: "Projetos",
+        path: "#projetos",
+      },
+      {
+        name: "Contato",
+        path: "#contato",
+      },
+    ];
+  });
 </script>
 <template>
-  <div class="w-full h-15 px-2">
-    <nav class="max-w-7xl mx-auto flex justify-between py-2">
+  <div class="w-full">
+    <nav class="max-w-7xl mx-auto flex justify-between py-8">
       <span>
-        <NuxtLink to="/" class="inline-flex p-4 cursor-pointer">
+        <NuxtLink
+          to="/"
+          class="bg-gradient-to-r from-emerald-500 to-violet-500 inline-block text-transparent bg-clip-text font-bold text-xl font-dm-sans cursor-pointer py-4 px-3"
+        >
           Leonardo Lima
         </NuxtLink>
       </span>
-      <ul class="flex gap-2">
+      <ul class="sm:flex gap-1 hidden">
         <li v-for="item in navItems" :key="item.name">
-          <NuxtLink :to="item.path" class="inline-flex p-4 cursor-pointer">
+          <NuxtLinkLocale
+            :to="item.path"
+            class="inline-flex py-4 px-3 cursor-pointer font-dm-sans text-dark-content text-xl font-semibold hover:text-neutral-600 transition"
+          >
             {{ item.name }}
-          </NuxtLink>
+          </NuxtLinkLocale>
         </li>
       </ul>
     </nav>
+    <SwitchLang />
   </div>
 </template>
 <style></style>

@@ -8,23 +8,23 @@
       },
       {
         name: t("about-me"),
-        path: "About",
+        path: `#${t("id-about-me")}`,
       },
       {
         name: "Habilidades",
-        path: "#habilidades",
+        path: `#${t("id-skills")}`,
       },
       {
         name: "Experiências",
-        path: "#experiencias",
+        path: `#${t("id-work-experience")}`,
       },
       {
         name: "Projetos",
-        path: "#projetos",
+        path: `#${t("id-projects")}`,
       },
       {
         name: "Contato",
-        path: "#contato",
+        path: `#${t("id-contact")}`,
       },
     ];
   });
@@ -42,16 +42,15 @@
       </span>
       <ul class="sm:flex gap-1 hidden">
         <li v-for="item in navItems" :key="item.name">
-          <NuxtLinkLocale
-            :to="item.path"
+          <a
+            :href="item.path"
             class="inline-flex py-4 px-3 cursor-pointer font-dm-sans text-dark-content text-xl font-semibold hover:text-neutral-600 transition"
           >
             {{ item.name }}
-          </NuxtLinkLocale>
+          </a>
         </li>
       </ul>
     </nav>
-    <SwitchLang />
   </div>
 </template>
 <style></style>

@@ -4,7 +4,7 @@
     return [
       {
         name: "Início",
-        path: "/",
+        path: "#",
       },
       {
         name: t("about-me"),

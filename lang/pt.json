@@ -1,5 +1,11 @@
 {
   "welcome": "Bem vindo",
   "whatsup": "E aeeee",
-  "about-me": "Sobre"
+  "about-me": "Sobre",
+  "id-hero": "hero",
+  "id-about-me": "about-me",
+  "id-skills": "skills",
+  "id-work-experience": "work-experience",
+  "id-projects": "projects",
+  "id-contact": "contact"
 }
